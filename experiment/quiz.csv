@@ -1,0 +1,6 @@
+mcq,Choices,Answer
+What is the main focus of data analysis?,option : Building predictive models | option : Examining and interpreting data | option : Working with unstructured data | option : Implementing machine learning algorithms,b
+What type of datasets does data analysis typically work with?,"option : Small, structured datasets | option : Large, complex datasets | option : Unstructured data | option : Text or images",a
+What is a common task in data analysis to gain insights into the data?,option : Data preprocessing | option : Feature engineering | option : Data visualization | option : Model selection,c
+What is the main goal of data science?,option : Identifying patterns and trends | option : Making informed decisions | option : Building predictive models | option : Data cleaning,c
+What is a key difference between data analysis and data science?,"option : Data analysis uses machine learning algorithms | option : Data science focuses on structured data | option : Data analysis is more iterative | option : Data science involves working with larger, more complex datasets",d
