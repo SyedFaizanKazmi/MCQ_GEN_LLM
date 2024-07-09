@@ -5,11 +5,11 @@ import traceback
 from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain, SequentialChain
-from langchain_community.callbacks.manager import get_openai_callback  # Updated import
+from langchain.chains import LLMChain,SequentialChain
+from langchain.callbacks import get_openai_callback
 import PyPDF2
 from src.mcq_generator.logger import logging
-from src.mcq_generator.util import read_file, get_table_data
+from src.mcq_generator.util import read_file,get_table_data
 from dotenv import load_dotenv
 load_dotenv()
 
