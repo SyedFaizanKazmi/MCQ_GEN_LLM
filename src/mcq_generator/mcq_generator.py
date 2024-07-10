@@ -1,20 +1,18 @@
 import os
 import json
-import pandas as pd
 import traceback
 from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
-from langchain_community.callbacks.manager import get_openai_callback  # Updated import
-import PyPDF2
+from langchain_community.callbacks.manager import get_openai_callback
 from src.mcq_generator.logger import logging
 from src.mcq_generator.util import read_file, get_table_data
 from dotenv import load_dotenv
 load_dotenv()
 
-api_key=os.getenv('key')
-llm=ChatOpenAI(openai_api_key=api_key,model_name='gpt-3.5-turbo',temperature=1.5)
+api_key = os.getenv('key')
+llm = ChatOpenAI(openai_api_key=api_key, model_name='gpt-3.5-turbo', temperature=1.5)
 
 mcq_prompt = PromptTemplate(
     input_variables=['number', 'response_json', 'subject', 'text', 'tone'],
@@ -27,7 +25,7 @@ mcq_prompt = PromptTemplate(
     {response_json}
     """
 )
-quiz_chain=LLMChain(llm=llm,prompt=mcq_prompt,output_key='quiz',verbose=True)
+quiz_chain = LLMChain(llm=llm, prompt=mcq_prompt, output_key='quiz', verbose=True)
 
 evaluation_prompt = PromptTemplate(
     input_variables=['quiz', 'subject'],
@@ -40,5 +38,5 @@ evaluation_prompt = PromptTemplate(
     Check from an expert English Writer of the above quiz:
     """
 )
-review_chain=LLMChain(llm=llm,prompt=evaluation_prompt,output_key='review',verbose=True)
-generate_evaluate_chain=SequentialChain(chains=[quiz_chain,review_chain],input_variables=['number', 'response_json', 'subject', 'text', 'tone'],output_variables=['quiz','review'])
+review_chain = LLMChain(llm=llm, prompt=evaluation_prompt, output_key='review', verbose=True)
+generate_evaluate_chain = SequentialChain(chains=[quiz_chain, review_chain], input_variables=['number', 'response_json', 'subject', 'text', 'tone'], output_variables=['quiz', 'review'])

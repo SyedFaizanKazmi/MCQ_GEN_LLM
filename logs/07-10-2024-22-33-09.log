@@ -1,0 +1,15 @@
+[2024-07-10 22:33:23,197] 17 root - ERROR - Error reading the PDF file: PdfFileReader is deprecated and was removed in PyPDF2 3.0.0. Use PdfReader instead.
+[2024-07-10 22:33:23,200] 18 root - ERROR - Traceback (most recent call last):
+  File "F:\MCQ_GEN_LLM\src\mcq_generator\util.py", line 9, in read_file
+    pdf_reader = PyPDF2.PdfFileReader(file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\MCQ_GEN_LLM\mcq\Lib\site-packages\PyPDF2\_reader.py", line 1974, in __init__
+    deprecation_with_replacement("PdfFileReader", "PdfReader", "3.0.0")
+  File "F:\MCQ_GEN_LLM\mcq\Lib\site-packages\PyPDF2\_utils.py", line 369, in deprecation_with_replacement
+    deprecation(DEPR_MSG_HAPPENED.format(old_name, removed_in, new_name))
+  File "F:\MCQ_GEN_LLM\mcq\Lib\site-packages\PyPDF2\_utils.py", line 351, in deprecation
+    raise DeprecationError(msg)
+PyPDF2.errors.DeprecationError: PdfFileReader is deprecated and was removed in PyPDF2 3.0.0. Use PdfReader instead.
+
+[2024-07-10 22:35:09,223] 1026 httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2024-07-10 22:35:10,469] 1026 httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
