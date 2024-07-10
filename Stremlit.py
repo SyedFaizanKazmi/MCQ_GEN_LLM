@@ -32,7 +32,7 @@ with st.form("users_input"):
 def split_request(text, number, subject, tone, response_json):
     mcqs = []
     reviews = []
-    batch_size = 3
+    batch_size = 100
 
     for i in range(0, number, batch_size):
         current_number = min(batch_size, number - i)
@@ -45,6 +45,10 @@ def split_request(text, number, subject, tone, response_json):
                     'tone': tone,
                     'response_json': json.dumps(response_json)
                 })
+            print(f"total tokens: ",cb.total_tokens)
+            print(f"Prompt tokens: ",cb.prompt_tokens)
+            print(f"completion tokens: ",cb.completion_tokens)
+            print(f"total cost: ",cb.total_cost)
             if isinstance(response, dict):
                 mcqs.append(response.get('quiz', ''))
                 reviews.append(response.get('review', ''))
@@ -96,7 +100,7 @@ if table_data:
         pdf.add_page()
         
         pdf.set_font("Arial", 'B', 16)
-        pdf.cell(0, 10, f"MCQ Quiz for {subject}", 0, 1, 'C')
+        pdf.cell(0, 10, f"MCQ Quiz for topic: {subject}", 0, 1, 'C')
         pdf.ln(10)
         
         pdf.set_font("Arial", size=12)
